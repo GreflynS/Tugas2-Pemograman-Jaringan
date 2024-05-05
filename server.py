@@ -2,6 +2,7 @@ import argparse
 import os
 import socket
 
+Upload_Folder = 'Uploads'
 def ls(conn, directory='.'):
     parser = argparse.ArgumentParser(description='List files in a directory')
     parser.add_argument('directory', type=str, nargs='?', default='.')
@@ -18,15 +19,36 @@ def remove_file(filename):
     else:
         return "File {} tidak ada.".format(filename)
 
-def upload(conn, filename):
-    with open(filename, 'wb') as f:
-        data = conn.recv(1024)
-        while True:
-            data = conn.recv(1024)
-            if not data:
-                break
-            f.write(data)
-    print("File {} telah di upload.".format(filename)) 
+def upload(conn, filename, upload_dir='.'):
+
+    # with open(filename, 'wb') as f:
+    #     data = conn.recv(1024)
+    #     while True:
+    #         data = conn.recv(1024)
+    #         if not data:
+    #             break
+    #         f.write(data)
+    # print("File {} telah di upload.".format(filename)) 
+
+    try:
+        upload_dir = os.path.abspath(upload_dir)
+        if not os.path.exists(upload_dir):
+            os.makedirs(upload_dir)
+        file_destination = os.path.join(upload_dir, filename) #Menentukan lokasi Tujuan File yg akn diup
+        if os.path.exists(file_destination):
+            user_input = input("File {} sudah tersedia di {}. Apakah Anda ingin menggantinya? (y/n): ".format(filename, upload_dir))
+            if user_input.lower() != 'y':
+                return "Upload dibatalkan. File {} tidak diunggah.".format(filename)
+        with open(file_destination, 'wb') as f:
+            file_location = os.path.join(upload_dir, filename)
+        return "File {} telah berhasil diunggah ke {}.".format(filename, file_location)
+    except Exception as e:
+        # Mengembalikan pesan error jika terjadi kesalahan
+        error_message = "Terjadi kesalahan pada saat mengunggah file {}: {}".format(filename, str(e))
+        print(error_message)
+        return error_message
+
+
 def download(conn, filename):
     if os.path.exists(filename):
         with open(filename, 'rb') as f:
