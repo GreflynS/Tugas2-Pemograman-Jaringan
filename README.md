@@ -3,7 +3,7 @@
 Greflyn Felinstya Salhuteru
 IF.0201 / 1203220024
 ------------------------------
-# Soal
+## Soal
 Buat sebuah program file transfer protocol menggunakan socket programming dengan beberapa perintah dari client seperti berikut :
 ls : ketika client menginputkan command tersebut, maka server akan memberikan daftar file dan folder. 
 rm {nama file} : ketika client menginputkan command tersebut, maka server akan menghapus file dengan acuan nama file yang diberikan pada parameter pertama.
@@ -17,7 +17,7 @@ connme : ketika client menginputkan command tersebut, maka hubungan socket clien
 
 - Upload di github dan kumpulkan url repositorinya
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Hasil
+## Hasil
 
 **1. Command Ls**
    
@@ -110,4 +110,28 @@ Output :
 
 ![Screenshot 2024-04-10 150646](https://github.com/GreflynS/Tugas2-Pemograman-Jaringan/assets/163794459/4412ddc4-6802-45cf-9b52-76661f8a7eeb)
 
-# Sekian <3
+## Soal Tambahan
+1. Modifikasi agar file yang diterima dimasukkan ke folder tertentu 
+
+2. Modifikasi program agar memberikan feedback nama file dan filesize yang diterima.
+3. Apa yang terjadi jika pengirim mengirimkan file dengan nama yang sama dengan file yang telah dikirim sebelumnya? Dapat menyebabkan masalah kah ? Lalu bagaimana solusinya? Implementasikan ke dalam program, solusi yang Anda berikan.
+
+----
+#### Bagian yang di ubah ada di bagian 'Def Upload' 
+
+![image](https://github.com/GreflynS/Tugas2-Pemograman-Jaringan/assets/163794459/aa9d912b-ddb7-48b4-ac45-50c79cbfa69b)
+
+1. Pertama, kode akan mengambil alamat absolut dari direktori yang diberikan dan memeriksa apakah direktori tersebut ada. Jika tidak, maka kode akan membuatnya.
+2. Kemudian, kode akan menentukan lokasi tujuan untuk file yang akan diunggah dengan menggabungkan direktori upload dengan nama file.
+3. Jika file tersebut sudah ada di lokasi tujuan, kode akan meminta konfirmasi dari pengguna untuk menggantinya atau tidak.
+4. Selanjutnya, kode akan membuka file yang akan diunggah dalam mode binary (wb) dan menetapkan lokasi file yang diunggah.
+5. Akhirnya, jika tidak ada kesalahan yang terjadi dalam proses pengunggahan, kode akan mengembalikan pesan sukses yang menyatakan bahwa file telah berhasil diunggah ke lokasi yang ditentukan. 
+Namun, jika terjadi kesalahan saat mengunggah file, pesan error akan ditampilkan dan kode akan mengembalikan pesan error tersebut.
+
+#### File Berhasil di Upload.
+
+![image](https://github.com/GreflynS/Tugas2-Pemograman-Jaringan/assets/163794459/93c82bd6-ab25-45bf-ad4d-5b444c03c6cd)
+
+##### Filenya
+![image](https://github.com/GreflynS/Tugas2-Pemograman-Jaringan/assets/163794459/e213fbb6-3abe-46b3-930f-ce4d5a2ad80c)
+
